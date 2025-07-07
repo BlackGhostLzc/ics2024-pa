@@ -54,6 +54,36 @@ static int cmd_q(char *args) {
   return -1;
 }
 
+static int cmd_x(char *args) {
+  return 0;
+}
+
+static int cmd_si(char *args) {
+  if(args == NULL) {
+    cpu_exec(1);
+    return 0;
+  }
+  int n = atoi(args);
+  cpu_exec(n);
+  return 0;
+}
+
+static int cmd_info(char *args) {
+  return 0;
+}
+
+static int cmd_p(char *args) {
+  return 0;
+}
+
+static int cmd_w(char *args) {
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -66,7 +96,12 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-
+  {"x", "Scan the memory", cmd_x },
+  {"si", "Single instruction execute", cmd_si}, 
+  {"info", "Print program's states, register or watchpoint", cmd_info},
+  {"p", "Expresion", cmd_p },
+  {"w", "Set Watchpoint", cmd_w },
+  {"d", "Delete Watchpoint", cmd_d },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
