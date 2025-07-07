@@ -61,14 +61,21 @@ static int cmd_x(char *args) {
 static int cmd_si(char *args) {
   if(args == NULL) {
     cpu_exec(1);
-    return 0;
   }
-  int n = atoi(args);
-  cpu_exec(n);
+  else {
+    int n = atoi(args);
+    cpu_exec(n);
+  }
   return 0;
 }
 
 static int cmd_info(char *args) {
+  if(args == NULL) {
+    printf("info command need a argument, r for registers and w for watchpoints");
+  }
+  if(args[0] == 'r') {
+    isa_reg_display();
+  }
   return 0;
 }
 
